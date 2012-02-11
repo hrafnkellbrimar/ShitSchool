@@ -3,6 +3,8 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+import ldap
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 import os.path
 PROJECT_DIR = os.path.dirname(__file__)
 
