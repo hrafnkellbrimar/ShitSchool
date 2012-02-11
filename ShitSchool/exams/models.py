@@ -7,3 +7,9 @@ class Exam(models.Model):
     name = models.CharField(max_length=64)
     deadline = models.DateTimeField(default=datetime.now())
     author = models.CharField(max_length=64)
+
+class ExamQuestion(models.Model):
+     exam = models.ForeignKey(Exam)
+     question = models.CharField(max_length=256)
+     position = models.IntegerField()
+     value = models.IntegerField()
