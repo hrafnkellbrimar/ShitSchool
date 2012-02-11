@@ -1,6 +1,7 @@
-# Create your views here.
-from ShitShcool.exams.models import *
-from django.shortcuts import *
+from exams.models import *
+from datetime import datetime
+from django.shortcuts import render_to_response
 
 def home(request):
-    return render_to_response("index.html")
+    ojb = {"current_date": datetime.now(), "name": "Daniel"}    
+    return render_to_response("index.html", ojb)
