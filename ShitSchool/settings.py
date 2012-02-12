@@ -16,13 +16,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': os.path.join(PROJECT_DIR, 'db'),
-     #'/home/bjorn/ShitSchool/ShitSchool/db/db.sqlite',
-    'USER': '',                      # Not used with sqlite3.
-    'PASSWORD': '',                  # Not used with sqlite3.
-    'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-    'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_DIR, 'db.sqlite'),
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -111,8 +110,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'ShitSchool.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'media')
-    #"/home/bjorn/ShitSchool/ShitSchool/templates",
+    os.path.join(PROJECT_DIR, 'templates')
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -134,16 +132,13 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
-    #'impostor.backend.AuthBackend',
 )
 
 AUTH_LDAP_SERVER_URI = "ldap://hirdc.hir.is:389/"
-
-AUTH_LDAP_BIND_DN = "CN=wepo,OU=WEPO,OU=External,OU=Services,DC=hir,DC=is"
-
+AUTH_LDAP_BIND_DN = "CN=wepo,OU=WEPO,OU=External, OU=Services,DC=hir,DC=is"
 AUTH_LDAP_BIND_PASSWORD = "OJoo7kia"
-
 AUTH_LDAP_USER_SEARCH = LDAPSearch( "OU=People,DC=hir,DC=is", ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")    
 
 LOGIN_URL = '/accounts/login'
@@ -167,6 +162,19 @@ LOGGING = {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+    'handlers': {
+        'stream_to_console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        },        
+    },
+    'loggers': {
+        'django_auth_ldap': {
+            'handlers': ['stream_to_console'],
+            'level': 'DEBUG',
             'propagate': True,
         },
     }

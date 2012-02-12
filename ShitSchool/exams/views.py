@@ -2,9 +2,12 @@ from exams.models import *
 from datetime import datetime
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
+from pprint import pprint
 
 @login_required
 def home(request):
+    #pprint( vars( request.user ) )
+    #log.debug("This will be printed to the console")
     ojb = {"current_date": datetime.now(), "name": "Daniel"}    
     return render_to_response("index.html", ojb) 
 
