@@ -12,6 +12,23 @@ def home(request):
     return render_to_response("index.html", ojb) 
 
 def login(request):
-    #return render_to_response(r'^accounts/login/$', 'django.contrib.auth.views.login', {'ShitSchool': 'exams/login.html'})
+#return render_to_response(r'^accounts/login/$', 'django.contrib.auth.views.login', {'ShitSchool': 'exams/login.html'})
     obj = {"next": "/index.html"}
     return render_to_response("login.html", obj)
+
+def exams_add(request, exam_id):
+    if request.method == 'GET':
+        exam = Exam.objects.get(pk=exam_id)
+        return render_to_response("exam.html",exam)
+    else: # POST
+    # Process the form
+    endif
+    else: # POST
+    # Process the form
+        form_data = request.POST
+        name = form_data["name"]
+        # TODO: save the data...
+        HttpResponseRedirect('/exams/')
+        # Post-Redirect-Get pattern...
+    endif
+                    
