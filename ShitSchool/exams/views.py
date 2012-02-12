@@ -3,6 +3,12 @@ from datetime import datetime
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from pprint import pprint
+from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    return redirect(ShitSchool.exams.views.login)
 
 @login_required
 def home(request):
