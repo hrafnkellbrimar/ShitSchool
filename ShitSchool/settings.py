@@ -131,6 +131,22 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    #'impostor.backend.AuthBackend',
+)
+
+AUTH_LDAP_SERVER_URI = "ldap://hirdc.hir.is:389/"
+
+AUTH_LDAP_BIND_DN = "CN=wepo,OU=WEPO,OU=External,OU=Services,DC=hir,DC=is"
+
+AUTH_LDAP_BIND_PASSWORD = "OJoo7kia"
+
+AUTH_LDAP_USER_SEARCH = LDAPSearch( "OU=People,DC=hir,DC=is", ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")    
+
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/exams/home'
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
