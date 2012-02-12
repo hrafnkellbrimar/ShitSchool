@@ -16,12 +16,13 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/home/bjorn/ShitSchool/ShitSchool/db/db.sqlite',
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': os.path.join(PROJECT_DIR, 'db'),
+     #'/home/bjorn/ShitSchool/ShitSchool/db/db.sqlite',
+    'USER': '',                      # Not used with sqlite3.
+    'PASSWORD': '',                  # Not used with sqlite3.
+    'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+    'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -110,7 +111,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'ShitSchool.urls'
 
 TEMPLATE_DIRS = (
-    "/home/bjorn/ShitSchool/ShitSchool/templates",
+    os.path.join(PROJECT_DIR, 'media')
+    #"/home/bjorn/ShitSchool/ShitSchool/templates",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
