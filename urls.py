@@ -8,11 +8,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^exams/$', home),
+    (r'^$', home),
     (r'^exams/home/$', home),
     (r'^exams/postexam/$', exam_add),
     (r'^exams/view_exam/$', view_exam),
+    (r'^accounts/$','django.contrib.auth.views.login'),
     (r'^accounts/login/$','django.contrib.auth.views.login'),
-    (r'^accounts/logout$','django.contrib.auth.views.logout'),
+    (r'^accounts/logout/$','django.contrib.auth.views.logout'),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^admin/', include(admin.site.urls)),
 )

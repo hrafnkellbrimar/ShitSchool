@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends "base.html"%}
 
 {% block content %}
   <body>
     <p><a href="{% url django.contrib.auth.views.logout %}">Logout</a></p>
-    <p>The current time is <span>{{current_date}}</span> the name is {{name}}</p>
+    <p>The current time is <time>{{current_date}}</time> the name is {{name}}</p>
   </body>
 {% endblock %}

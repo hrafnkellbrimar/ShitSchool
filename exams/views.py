@@ -13,7 +13,7 @@ from django.http import HttpResponseRedirect
 def logout(request):
     logout(request)
     # Redirect to a success page.
-    return redirect(ShitSchool.exams.views.login)
+    return render("logout.html")
 
 @login_required
 def home(request):

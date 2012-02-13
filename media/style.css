@@ -36,4 +36,5 @@ h1
     font-size: xx-large;
     font-weight: bold;
     color: navy;
+    text-shadow: 5px 5px 5px #FF0000;
 }
