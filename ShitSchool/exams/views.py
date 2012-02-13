@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from pprint import pprint
 from django.contrib.auth import logout
 
-def logout_view(request):
+@login_required
+def logout(request):
     logout(request)
     # Redirect to a success page.
     return redirect(ShitSchool.exams.views.login)
@@ -26,9 +27,9 @@ def exams_add(request, exam_id):
     if request.method == 'GET':
         exam = Exam.objects.get(pk=exam_id)
         return render_to_response("exam.html",exam)
-    else: # POST
+    #else: # POST
     # Process the form
-    endif
+    #endif
     else: # POST
     # Process the form
         form_data = request.POST
