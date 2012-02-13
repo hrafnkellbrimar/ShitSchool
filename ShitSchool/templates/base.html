@@ -2,20 +2,6 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css" />
-<<<<<<< HEAD
-    <title>{% block title %}My amazing site{% endblock %}</title>
-  </head>
-  
-  <body>
-    <div id="sidebar">
-      {% block sidebar %}
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog/">Blog</a></li>
-      </ul>
-      {% endblock %}
-    </div>
-=======
     <title>{% block title %}ShitSchool{% endblock %}</title>
 </head>
 
@@ -24,9 +10,7 @@
     <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
 {% else %}
     <p>Welcome, new user. Please log in.</p>
-{% endif %}
->>>>>>> f5580b202b09103336b444759fe463249ab43acd
-    
+{% endif %} 
     <div id="content">
       {% block content %}{% endblock %}
     </div>
