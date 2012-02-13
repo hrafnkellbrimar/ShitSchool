@@ -1,14 +1,12 @@
 {% extends "base.html"%}
+
 {% block content %}
 <body>
-
-	<nav>
-		<a href="/accounts/login/">Login</a> |
-		<a href="/accounts/logout/">Logout</a> |
-	</nav>
-	<form action="/exams/postexam/" method="post">{% csrf_token %}
-    	{{ form.as_p }}
-    	<input type="submit" value="Submit" />
-  	</form>
+  <h2>Post an exam</h2>
+  <form action="/exams/postexam/" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+  </form>
+  
 </body>
 {% endblock %}
