@@ -1,1 +1,13 @@
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+*.log
+*.pot
 *.pyc
+local_settings.py
+	
