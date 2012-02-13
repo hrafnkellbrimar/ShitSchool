@@ -34,6 +34,9 @@ class Options(models.Model): # Possible Answers to multiple choice questions
     three = models.CharField(max_length=256)
     four = models.CharField(max_length=256)
     """
+class Theachers(models.Model):
+    name = models.CharField(max_length=32)
+    is_teacher = models.BooleanField()
 
 class ExamForm(ModelForm):
     class Meta:

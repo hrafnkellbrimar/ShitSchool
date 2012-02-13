@@ -10,17 +10,6 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-
-"""def index(request):
-    title = 'Educator 3000 - Where people learn or die'
-    uid = 1 # should come from authentication
-    name = request.user.ldap_user.attrs["displayName"][0]
-    staff = request.user.is_staff
-    exams_results = list(Exam.objects.all())
-    user = User.objects.get(id=uid)
-    ctx = {'title': title, 'exams_list': exams_results, 'user': user, 'name': name, 'staff': staff }
-    return render_to_response('exams/index.html', ctx)
-"""
 def logout(request):
     logout(request)
     # Redirect to a success page.
@@ -48,6 +37,7 @@ def view_exam(request):
         formset = QuestionFormSet()
     return render_to_response("view_exam.html",{"formset": formset,})
 
+# Python magic inspired by: http://themorgue.org/blog/2008/05/14/django-and-modelform/ :
 @csrf_protect
 def exam_add(request, id=None):
     form = ExamForm(request.POST or None,instance=id and Exam.objects.get(id=id))
@@ -55,7 +45,6 @@ def exam_add(request, id=None):
     if request.method == 'POST' and form.is_valid():
         form.save()
         return HttpResponseRedirect('/exams/view_exam/')
-
     return render_to_response('postexam.html', {'form':form},context_instance=RequestContext(request))
-    
-                    
+
+
