@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css' />
+    <link href="{{ MEDIA_URL }}style.css" rel="stylesheet" type="text/css" />
+    <title>{% block title %}ShitSchool{% endblock %}</title>
+</head>
+
+<body>
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %} 
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

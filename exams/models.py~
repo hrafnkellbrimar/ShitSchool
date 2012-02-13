@@ -1,0 +1,14 @@
+from django.db import models
+from datetime import datetime, timedelta
+from django.contrib.auth.models import User
+ 
+# Create your models here.
+ 
+class Exam(models.Model):
+    name = models.CharField(max_length=64)
+    creation_date = models.DateTimeField(default=datetime.now)
+    start_date = models.DateTimeField(null=True, blank=True)
+    deadline = models.DateTimeField(default=datetime.now())
+    author = models.CharField(max_length=64)
+    teacher = models.ForeignKey(User, releated_name='teacher_set')
+    students = models.ManyToManyField(User)
