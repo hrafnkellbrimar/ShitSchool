@@ -2,8 +2,10 @@
 
 {% block content %}
 <body>
-  <form method="post" action="">
-   <p>{{ formset }} </p>
+  <h2>Put in questions for the exam</h2>
+  <form action="/exams/view_exam/" method="post">{% csrf_token %}
+   <p>{{ question_formset.as_p }} </p>
+   <p>{{ options_formset.as_p }} </p>
     <input type="submit" value="Submit" />
   </form>
 </body>

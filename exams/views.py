@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
+
 def logout(request):
     logout(request)
     # Redirect to a success page.
@@ -27,16 +28,23 @@ def login(request):
     obj = {"next": "/index.html"}
     return render_to_response("login.html", obj)
 
+@csrf_protect
 def view_exam(request):
-    QuestionFormSet = modelformset_factory(ExamQuestion)
+    QuestionFormSet = formset_factory(QuestionForm)
+    OptionsFormSet = formset_factory(OptionForm)
     if request.method == 'POST':
-        formset = QuestionFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            formset.save()
+        question_formset = QuestionFormSet(request.POST, request.FILES, prefix='question')
+        options_formset = OptionsFormSet(request.POST, request.FILES, prefix='options')
+        if article_formset.is_valid() and book_formset.is_valid():
+            for form in question_formset:
+                print form()
+            for form in options_formset():
+                print form()
+            pass
     else:
-        formset = QuestionFormSet()
-    return render_to_response("view_exam.html",{"formset": formset,})
-
+        question_formset = QuestionFormSet(prefix='question')
+        options_formset = OptionsFormSet(prefix='opttions')
+    return render_to_response('view_exam.html', {'question_formset': question_formset, 'options_formset': options_formset},context_instance=RequestContext(request))
 # Python magic inspired by: http://themorgue.org/blog/2008/05/14/django-and-modelform/ :
 @csrf_protect
 def exam_add(request, id=None):

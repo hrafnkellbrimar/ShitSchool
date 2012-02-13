@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from django.forms.formsets import formset_factory
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -45,6 +45,10 @@ class ExamForm(ModelForm):
 class QuestionForm(ModelForm):
     class Meta:
         model = ExamQuestion
+        fields = ('exam','question', 'position', 'solution', 'answer')
+        widgets = {
+            'question': Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
 
 class OptionForm(ModelForm):
     class Meta:
